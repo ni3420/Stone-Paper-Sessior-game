@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+        }
+        .content{
+            background-color: antiquewhite;
+            height: auto;
+            width: 500px;
+            border-radius: 20px;
+            padding: 20px;
+        }
+        .button{
+            margin: 20px;
+        }
+
+        .red{
+            display: flex;
+            width: 100%;
+            justify-content: space-evenly;
+        }
+        .check{
+            display: flex;
+            justify-content: space-evenly;
+            font-size: 20px;
+            
+            
+        }
+        h1,h2{
+            font-size: 20px;
+        }
+        img{
+            width: 100px;
+            
+        }
+        #user,#com{
+            margin-top: 80px;
+        }
+        .item{
+            margin-top:40px ;
+            display: flex;
+            justify-content: space-evenly;
+            font-size: 20px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="content">
+    <button class="button" ><img src="paper.png" id="paper"/></button>
+    <button class="button" ><img src="sesser.png" id="sesser"/></button>
+    <button class="button" ><img src="rock.png" id="rock"/></button>
+    <div class="red"><img src="" id="com"/>
+    <img src="" id="user"/>
+</div>
+<div class="check">
+    <label>computer:</label>
+    <label>User:</label>
+    </div>
+    <div class="item">
+    <label for="h2">Win:<h1 id="h2"></h1></label>
+    
+    <label>Result:<h1 id="h1"></h1></label>
+    <label>Lost:<h1 id="h3"></h1></label>
+    
+    </div>
+
+    </div>
+    
+
+<script>
+    const h3=document.getElementById("h3");
+    const h2=document.getElementById("h2");
+    const h1=document.getElementById("h1");
+    const com=document.getElementById("com")
+    const user=document.getElementById("user");
+    const button=document.querySelectorAll(".button");
+    let count=0;
+    let lost=0;
+    let set=["rock.png","paper.png","sesser.png"];
+    button.forEach(b=>{
+        b.addEventListener("click",(e)=>{
+            let res="";
+            res+=set[Math.floor(Math.random()*3)]
+            console.log(res);
+            com.src=res;
+            console.log(e.target)
+            user.src=e.target.src;
+            
+            
+            
+            if(res==="paper.png" && e.target.id==="sesser")
+        {
+            console.log("winner");
+            h1.innerHTML="winner";
+            count++;
+
+        }else if(res==="sesser.png"&& e.target.id==="paper")
+        {
+            console.log("lost");
+            h1.innerHTML="lost";
+            lost++;
+        }
+        else if(res==="rock.png"&& e.target.id==="sesser")
+        {
+            console.log("lost");
+            h1.innerHTML="lost";
+            lost++;
+        }
+        else if(res==="sesser.png" && e.target.id==="rock")
+        {
+            console.log("winner");
+            h1.innerHTML="winner";
+            count++;
+        }
+        else if(res==="rock.png"&& e.target.id==="paper")
+        {
+            console.log("lost");
+            h1.innerHTML="lost";
+            lost++;
+        }
+        else if(res==="paper.png"&&e.target.id==="rock")
+        {
+            console.log("winner");
+            h1.innerHTML="winner";
+            count++;
+        }
+        else if(res==="paper.png"&&e.target.id==="paper"||res==="rock.png"&&e.target.id==="rock"||res==="sesser.png"&&e.target.id==="sesser")
+        {
+console.log("draw")
+h1.innerHTML="draw";
+        }
+        h2.innerHTML=count;
+        h3.innerHTML=lost;
+    
+    
+
+    });
+    });
+    </script>
+</body>
+</html>
